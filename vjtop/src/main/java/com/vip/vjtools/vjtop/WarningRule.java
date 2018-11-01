@@ -1,5 +1,7 @@
 package com.vip.vjtools.vjtop;
 
+import com.vip.vjtools.vjtop.util.Formats;
+
 public class WarningRule {
 
 	public DoubleWarning cpu = new DoubleWarning(50d, 70d);
@@ -7,7 +9,7 @@ public class WarningRule {
 	public LongWarning swap = new LongWarning(1, 1);
 	public LongWarning thread = new LongWarning();
 	public LongWarning newThread = new LongWarning();
-	public LongWarning io = new LongWarning(30 * Utils.MB_SIZE, 100 * Utils.MB_SIZE);
+	public LongWarning io = new LongWarning(30 * Formats.MB_SIZE, 100 * Formats.MB_SIZE);
 
 	public LongWarning loadClass = new LongWarning(80000, 150000);
 	public LongWarning newClass = new LongWarning(1, Long.MAX_VALUE);
@@ -28,7 +30,7 @@ public class WarningRule {
 		thread.red = processors <= 8 ? processors * 225 : Math.max(8 * 225, processors * 150);
 	}
 
-	public void updateInterval(int intervalSeconds) {
+	public void updateInterval(long intervalSeconds) {
 		newThread.yellow = 1;
 		newThread.red = intervalSeconds * 2;
 
